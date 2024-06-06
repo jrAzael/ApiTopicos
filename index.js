@@ -9,13 +9,25 @@ const port = 3000;
 app.listen(port, () => {
     console.log(`Servidor creado en el puerto ${port}`);
 });
-const connection = mysql.createConnection({
-    host: process.env.host,
-    user: process.env.user,
-    password: process.env.password,
-    port: process.env.port,
-    database: process.env.database
-});
+const Servidor=[
+    {
+        //Servidor web 0
+        host:process.env.host2,
+        user:process.env.user2,
+        password:process.env.password2,
+        port:process.env.port2,
+        database:process.env.database2
+    },
+    {
+        //Servidor Local 1
+        host: process.env.host,
+        user: process.env.user,
+        password: process.env.password,
+        port: process.env.port,
+        database: process.env.database
+    }
+]
+const connection = mysql.createConnection(Servidor[0]);
 connection.connect((error) => {
     if (error) {
         throw error;
